@@ -5,12 +5,24 @@ import EmployeeForm from './EmployeeForm';
 import Modal from './Modal';
 import { RiEditCircleFill } from "react-icons/ri";
 
-const EmployeeList = ({ filteredEmployees }) => {
+interface Employee {
+  id: number;
+  name: string;
+  email: string;
+  position: string;
+}
+
+
+interface EmployeeListProps {
+  filteredEmployees: Employee[];
+}
+
+const EmployeeList = ({ filteredEmployees }: EmployeeListProps) => {
   const { deleteEmployee } = useEmployees();
-  const [editingEmployee, setEditingEmployee] = useState(null);
+  const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleEdit = (employee: any) => {
+  const handleEdit = (employee: Employee) => {
     setEditingEmployee(employee);
     setIsModalVisible(true);
   };
